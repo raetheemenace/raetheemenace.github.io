@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="200" height="50">
+  <defs>
+    <!-- Neon glow filter -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur3"/>
+      <feMerge>
+        <feMergeNode in="blur3"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Glitch animation styles -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+      
+      .logo-text {
+        font-family: 'Share Tech Mono', 'Courier New', monospace;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 2px;
+        fill: #00FF41;
+        filter: url(#neonGlow);
+      }
+      
+      .logo-bracket {
+        font-family: 'Share Tech Mono', 'Courier New', monospace;
+        font-size: 28px;
+        fill: #00FF41;
+        opacity: 0.8;
+        filter: url(#neonGlow);
+      }
+      
+      /* Glitch animation on hover - applied via CSS in parent document */
+      .logo-group {
+        transform-origin: center;
+      }
+      
+      /* Subtle pulse animation */
+      @keyframes logoPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.9; }
+      }
+      
+      .logo-text {
+        animation: logoPulse 3s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+  
+  <!-- Background (transparent) -->
+  <rect width="200" height="50" fill="transparent"/>
+  
+  <!-- Logo group for hover effects -->
+  <g class="logo-group">
+    <!-- Opening bracket -->
+    <text x="5" y="35" class="logo-bracket">[</text>
+    
+    <!-- Main text: B4Y0N3TTA -->
+    <text x="22" y="34" class="logo-text">B4Y0N3TTA</text>
+    
+    <!-- Closing bracket -->
+    <text x="178" y="35" class="logo-bracket">]</text>
+    
+    <!-- Decorative underline with glow -->
+    <line x1="22" y1="42" x2="175" y2="42" stroke="#00FF41" stroke-width="1" opacity="0.5">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2s" repeatCount="indefinite"/>
+    </line>
+  </g>
+</svg>

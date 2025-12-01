@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="B4Y0N3TTA - Personal Portfolio of John Raven Unera, Cybersecurity Enthusiast">
+  <meta name="author" content="John Raven Unera">
+  <title>B4Y0N3TTA | John Raven Unera</title>
+  
+  <!-- Google Fonts - Share Tech Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+      <img src="assets/logo.svg" alt="B4Y0N3TTA Logo" class="loading-logo">
+      <h2 class="loading-name">John Raven Unera</h2>
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+      <p class="loading-text">Initializing system...</p>
+    </div>
+  </div>
+
+  <!-- Digital Rain Canvas Background -->
+  <canvas id="digital-rain"></canvas>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="assets/logo.svg" alt="B4Y0N3TTA Logo">
+      </a>
+      
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experiences">Experiences</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-social">
+        <a href="https://github.com/raethemenace" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/john-raven-unera-728736356/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com/gnx.rae" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title glitch" data-text="B4Y0N3TTA">B4Y0N3TTA</h1>
+        <h2 class="hero-name typewriter">John Raven Unera</h2>
+        <div class="hero-photo-container">
+          <img src="assets/profile.jpg" alt="John Raven Unera" class="hero-photo" onerror="this.onerror=null; this.src='assets/profile-placeholder.svg';">
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <h2 class="section-heading neon-glow">About Me</h2>
+        <div class="about-content fade-in">
+          <div class="about-text">
+            <p class="about-intro typewriter-scroll" data-text="Hello World! I am Raven, you may call me Rae. I am a passionate cybersecurity enthusiast and aspiring blue-team defender.">
+              Hello World! I am Raven, you may call me Rae. I am a passionate cybersecurity enthusiast and aspiring blue-team defender.
+            </p>
+            <p class="about-description">
+              My journey in the digital realm began with a fascination for how systems work and how they can be protected. I specialize in defensive security operations, threat analysis, and building resilient systems that can withstand modern cyber threats.
+            </p>
+            <p class="about-aspirations">
+              As a blue-teamer at heart, I am dedicated to understanding attack vectors to build better defenses. My goal is to contribute to making the digital world a safer place through proactive security measures, incident response, and continuous learning in the ever-evolving landscape of cybersecurity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiences Section -->
+    <section id="experiences" class="section experiences-section">
+      <div class="container">
+        <h2 class="section-heading neon-glow">Experiences</h2>
+        <div class="experiences-grid">
+          <!-- Experience Card 1: International Battle Of Hackers 2025 -->
+          <div class="experience-card card slide-in-left" data-date="2025-01">
+            <div class="experience-type">International</div>
+            <h3 class="experience-title">International Battle Of Hackers 2025</h3>
+            <p class="experience-host">APU Malaysia</p>
+            <div class="experience-rank">
+              <span class="rank-label">Rank</span>
+              <span class="rank-value">17/42</span>
+            </div>
+          </div>
+
+          <!-- Experience Card 2: HackForGov 2025 -->
+          <div class="experience-card card slide-in-left" data-date="2025-01">
+            <div class="experience-type">National</div>
+            <h3 class="experience-title">HackForGov 2025</h3>
+            <p class="experience-host">National Capital Region</p>
+            <div class="experience-rank">
+              <span class="rank-label">Rank</span>
+              <span class="rank-value">7/20</span>
+            </div>
+          </div>
+
+          <!-- Experience Card 3: IT Quiz Bee -->
+          <div class="experience-card card slide-in-left" data-date="2024-01">
+            <div class="experience-type">Academic</div>
+            <h3 class="experience-title">IT Quiz Bee</h3>
+            <p class="experience-host">Academic Competition</p>
+            <div class="experience-rank">
+              <span class="rank-label">Rank</span>
+              <span class="rank-value">2nd Place</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <h2 class="section-heading neon-glow">Projects</h2>
+        <div class="projects-grid">
+          <!-- Project Card 1: HYDRA -->
+          <div class="project-card card fade-in-stagger" data-tilt>
+            <div class="project-icon">
+              <i class="fas fa-shield-halved"></i>
+            </div>
+            <h3 class="project-name">HYDRA</h3>
+            <p class="project-description">A unified OSINT and HUMINT Platform against corruption.</p>
+          </div>
+
+          <!-- Project Card 2: HarvesTrace -->
+          <div class="project-card card fade-in-stagger" data-tilt>
+            <div class="project-icon">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h3 class="project-name">HarvesTrace</h3>
+            <p class="project-description">An ERP and Traceability System for farmers.</p>
+          </div>
+
+          <!-- Project Card 3: KainTeen -->
+          <div class="project-card card fade-in-stagger" data-tilt>
+            <div class="project-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h3 class="project-name">KainTeen</h3>
+            <p class="project-description">A click-to-order platform for students with basic ERP functionalities for canteen processes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="section awards-section">
+      <div class="container">
+        <h2 class="section-heading neon-glow">Awards</h2>
+        <div class="awards-grid">
+          <!-- Award Badge 1: Dean's Lister 1st Semester -->
+          <div class="award-badge card pulse-glow">
+            <div class="award-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <h3 class="award-title">Dean's Lister</h3>
+            <p class="award-period">1st Semester S.Y. 2024-2025</p>
+            <div class="award-decoration">
+              <span class="matrix-code">[ACHIEVEMENT_UNLOCKED]</span>
+            </div>
+          </div>
+
+          <!-- Award Badge 2: Dean's Lister 2nd Semester -->
+          <div class="award-badge card pulse-glow">
+            <div class="award-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <h3 class="award-title">Dean's Lister</h3>
+            <p class="award-period">2nd Semester S.Y. 2024-2025</p>
+            <div class="award-decoration">
+              <span class="matrix-code">[ACHIEVEMENT_UNLOCKED]</span>
+            </div>
+          </div>
+
+          <!-- Award Badge 3: C2 Proficient EFSET -->
+          <div class="award-badge card pulse-glow">
+            <div class="award-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <h3 class="award-title">C2 Proficient</h3>
+            <p class="award-issuer">EFSET English Certification</p>
+            <div class="award-decoration">
+              <span class="matrix-code">[CERTIFIED]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <h2 class="section-heading neon-glow">Skills</h2>
+        <div class="skills-container">
+          <!-- Technical Skills Category -->
+          <div class="skills-category">
+            <h3 class="skills-category-title">
+              <i class="fas fa-code"></i>
+              Technical Skills
+            </h3>
+            <div class="skills-grid">
+              <div class="skill-item skill-reveal">
+                <i class="fab fa-linux skill-icon"></i>
+                <span class="skill-name">Kali Linux OS</span>
+              </div>
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-search skill-icon"></i>
+                <span class="skill-name">OSINT (theHarvester, Sherlock)</span>
+              </div>
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-key skill-icon"></i>
+                <span class="skill-name">Intermediate Cryptography (Hashcat, JohnTheRipper)</span>
+              </div>
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-globe skill-icon"></i>
+                <span class="skill-name">Web Development (HTML, CSS, JSX, React, Tailwind, PHP)</span>
+              </div>
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-database skill-icon"></i>
+                <span class="skill-name">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soft Skills Category -->
+          <div class="skills-category">
+            <h3 class="skills-category-title">
+              <i class="fas fa-users"></i>
+              Soft Skills
+            </h3>
+            <div class="skills-grid">
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-language skill-icon"></i>
+                <span class="skill-name">English Language Proficiency</span>
+              </div>
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-user-tie skill-icon"></i>
+                <span class="skill-name">Team Leader</span>
+              </div>
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-sync-alt skill-icon"></i>
+                <span class="skill-name">Adaptability</span>
+              </div>
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-microphone skill-icon"></i>
+                <span class="skill-name">Hosting/Presenting</span>
+              </div>
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-lightbulb skill-icon"></i>
+                <span class="skill-name">Visionary</span>
+              </div>
+              <div class="skill-item skill-reveal">
+                <i class="fas fa-clock skill-icon"></i>
+                <span class="skill-name">Punctual</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <h2 class="section-heading neon-glow">Contact</h2>
+        <div class="contact-content">
+          <div class="contact-form-wrapper">
+            <form id="contact-form" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name" required>
+                <span class="form-error" id="name-error"></span>
+              </div>
+              
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                <span class="form-error" id="email-error"></span>
+              </div>
+              
+              <div class="form-group">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-input" placeholder="Enter subject" required>
+                <span class="form-error" id="subject-error"></span>
+              </div>
+              
+              <div class="form-group">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" class="form-input form-textarea" placeholder="Enter your message" rows="5" required></textarea>
+                <span class="form-error" id="message-error"></span>
+              </div>
+              
+              <button type="submit" class="form-submit">
+                <span class="submit-text">Send Message</span>
+                <i class="fas fa-paper-plane"></i>
+              </button>
+              
+              <div class="form-message" id="form-message"></div>
+            </form>
+          </div>
+          
+          <div class="contact-social">
+            <p class="contact-social-text">Or connect with me on:</p>
+            <div class="contact-social-links">
+              <a href="https://github.com/raethemenace" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="contact-social-link">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
+              <a href="https://www.linkedin.com/in/john-raven-unera-728736356/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="contact-social-link">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://www.instagram.com/gnx.rae" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="contact-social-link">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 B4Y0N3TTA. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="js/digital-rain.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/contact-form.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
