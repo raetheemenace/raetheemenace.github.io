@@ -18,14 +18,17 @@ class DigitalRainRenderer {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     
-    // Configuration with defaults
+    // Detect mobile for performance optimization
+    this.isMobile = window.innerWidth < 768;
+    
+    // Configuration with defaults - adjust for mobile
     this.config = {
-      fontSize: config.fontSize || 20,
+      fontSize: config.fontSize || (this.isMobile ? 16 : 20),
       color: config.color || '#00FF41',
-      fadeColor: config.fadeColor || 'rgba(13, 13, 13, 0.03)',
+      fadeColor: config.fadeColor || (this.isMobile ? 'rgba(13, 13, 13, 0.05)' : 'rgba(13, 13, 13, 0.03)'),
       characters: config.characters || '01',
-      minSpeed: config.minSpeed || 0.2,
-      maxSpeed: config.maxSpeed || 0.6,
+      minSpeed: config.minSpeed || (this.isMobile ? 0.3 : 0.2),
+      maxSpeed: config.maxSpeed || (this.isMobile ? 0.8 : 0.6),
       ...config
     };
     
@@ -38,7 +41,7 @@ class DigitalRainRenderer {
     this.animationId = null;
     this.isRunning = false;
     this.lastFrameTime = 0;
-    this.targetFPS = 15; // Slower FPS for more visible character changes
+    this.targetFPS = this.isMobile ? 12 : 15; // Lower FPS on mobile for performance
     this.frameInterval = 1000 / this.targetFPS;
     
     // Bind methods for event handlers
@@ -197,48 +200,5 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = { DigitalRainRenderer };
 }
 
-// Auto-initialize when DOM is ready (can be overridden by main.js)
-let digitalRainInstance = null;
-
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('digital-rain');
-  if (canvas && !digitalRainInstance) {
-    // Check for reduced motion preference
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (reducedMotion) {
-      // For reduced motion, show a static dimmed canvas instead of animation
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      ctx.fillStyle = 'rgba(13, 13, 13, 0.7)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Draw a few static characters for visual effect without animation
-      ctx.fillStyle = 'rgba(0, 255, 65, 0.3)';
-      ctx.font = '14px "Share Tech Mono", monospace';
-      const columns = Math.floor(canvas.width / 14);
-      for (let i = 0; i < columns; i++) {
-        for (let j = 0; j < Math.floor(canvas.height / 14); j++) {
-          if (Math.random() > 0.95) {
-            ctx.fillText(Math.random() > 0.5 ? '0' : '1', i * 14, j * 14);
-          }
-        }
-      }
-      return;
-    }
-    
-    digitalRainInstance = new DigitalRainRenderer(canvas);
-    digitalRainInstance.init();
-    digitalRainInstance.start();
-    
-    // Listen for reduced motion preference changes
-    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
-      if (e.matches && digitalRainInstance) {
-        digitalRainInstance.stop();
-      } else if (!e.matches && digitalRainInstance) {
-        digitalRainInstance.start();
-      }
-    });
-  }
-});
+// Digital rain is now initialized by main.js after entry animation completes
+// This prevents the rain from showing during loading/entry screens

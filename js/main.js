@@ -26,6 +26,7 @@
   /**
    * Initialize Digital Rain background animation
    * Requirements: 1.3, 10.4 - Digital rain with binary numbers using Canvas
+   * Note: This is called after entry animation completes, not on page load
    */
   function initDigitalRain() {
     if (typeof DigitalRainRenderer === 'undefined') {
@@ -40,14 +41,17 @@
     }
 
     // Skip animation initialization if reduced motion is preferred
-    // (digital-rain.js handles this internally, but we double-check here)
     if (prefersReducedMotion()) {
+      canvas.classList.add('active');
       return null;
     }
 
     const digitalRain = new DigitalRainRenderer(canvas);
     digitalRain.init();
     digitalRain.start();
+    
+    // Show the canvas
+    canvas.classList.add('active');
     
     return digitalRain;
   }
@@ -147,23 +151,12 @@
     };
 
     try {
-      // 1. Initialize Digital Rain (background - lowest priority for user interaction)
-      controllers.digitalRain = initDigitalRain();
+      // All visual components are initialized AFTER entry animation completes
+      // to prevent any content from showing during loading/entry screens
+      // See hideLoadingScreen() for initialization
 
-      // 2. Initialize Navigation (critical for user navigation)
-      controllers.navigation = initNavigation();
-
-      // 3. Initialize Global Scroll Observer (for section reveals)
-      controllers.globalScrollObserver = initGlobalScrollObserver();
-
-      // 4. Initialize Animation Controller (visual effects)
-      controllers.animations = initAnimations();
-
-      // 5. Initialize Contact Form Handler (user interaction)
+      // Only initialize contact form early (it doesn't cause visual leaks)
       controllers.contactForm = initContactForm();
-
-      // 6. Initialize Project Card tilt effects (visual enhancement)
-      controllers.projectCards = initProjectCards();
 
       // Expose controllers globally for debugging and potential external access
       window.portfolioControllers = controllers;
@@ -182,20 +175,127 @@
   }
 
   /**
-   * Hide loading screen after animations complete
+   * Matrix Entry Animation - creates the "entering the matrix" effect
+   */
+  function initMatrixEntry() {
+    const canvas = document.getElementById('matrix-entry-canvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const fontSize = window.innerWidth < 768 ? 14 : 18;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = [];
+    
+    for (let i = 0; i < columns; i++) {
+      drops[i] = Math.random() * -50;
+    }
+    
+    let animationId;
+    
+    function draw() {
+      ctx.fillStyle = 'rgba(13, 13, 13, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = '#00FF41';
+      ctx.font = `${fontSize}px monospace`;
+      
+      for (let i = 0; i < columns; i++) {
+        const char = Math.random() > 0.5 ? '0' : '1';
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+        
+        ctx.fillText(char, x, y);
+        drops[i] += 0.5;
+        
+        if (y > canvas.height && Math.random() > 0.95) {
+          drops[i] = 0;
+        }
+      }
+      
+      animationId = requestAnimationFrame(draw);
+    }
+    
+    return {
+      start: () => { draw(); },
+      stop: () => { cancelAnimationFrame(animationId); }
+    };
+  }
+
+  /**
+   * Hide loading screen and show matrix entry transition
    */
   function hideLoadingScreen() {
     const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-      // Wait for loading bar animation to complete (1.5s delay + 2s animation = 3.5s)
-      // Add extra buffer for smoother experience
+    const matrixEntry = document.getElementById('matrix-entry');
+    const mainSite = document.getElementById('main-site');
+    
+    if (loadingScreen && matrixEntry) {
+      // Wait for loading bar animation to complete
       setTimeout(() => {
-        loadingScreen.classList.add('hidden');
-        // Remove from DOM after fade out animation (1.2s transition + buffer)
+        // FIRST: Activate matrix entry BEFORE fading loading screen
+        // This ensures there's no gap where main content is visible
+        matrixEntry.classList.add('active');
+        const matrixAnim = initMatrixEntry();
+        if (matrixAnim) matrixAnim.start();
+        
+        // THEN: Fade out loading screen (matrix entry is already visible behind it)
         setTimeout(() => {
-          loadingScreen.style.display = 'none';
-        }, 1400);
-      }, 3800);
+          loadingScreen.classList.add('hidden');
+          
+          // Remove loading screen from DOM after fade
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+          }, 1200);
+        }, 100); // Small delay before fading loading screen
+        
+        // After matrix entry has been showing for a while, start zoom
+        setTimeout(() => {
+          matrixEntry.classList.add('zoom-in');
+          
+          // Reveal main site during zoom animation
+          setTimeout(() => {
+            // Reveal navbar
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+              navbar.classList.remove('main-site-hidden');
+              navbar.classList.add('main-site-visible');
+            }
+            // Reveal main site content
+            if (mainSite) {
+              mainSite.classList.remove('main-site-hidden');
+              mainSite.classList.add('main-site-visible');
+            }
+            
+            // Initialize all visual components AFTER site is revealed
+            const digitalRain = initDigitalRain();
+            const navigation = initNavigation();
+            const globalScrollObserver = initGlobalScrollObserver();
+            const animations = initAnimations();
+            const projectCards = initProjectCards();
+            
+            // Update global controllers
+            if (window.portfolioControllers) {
+              window.portfolioControllers.digitalRain = digitalRain;
+              window.portfolioControllers.navigation = navigation;
+              window.portfolioControllers.globalScrollObserver = globalScrollObserver;
+              window.portfolioControllers.animations = animations;
+              window.portfolioControllers.projectCards = projectCards;
+            }
+            if (digitalRain) window.digitalRain = digitalRain;
+            if (navigation) window.navigationController = navigation;
+            if (animations) window.animationController = animations;
+          }, 1000);
+          
+          // Clean up after zoom animation
+          setTimeout(() => {
+            if (matrixAnim) matrixAnim.stop();
+            matrixEntry.style.display = 'none';
+          }, 2000);
+        }, 1500); // Start zoom after 1.5s of matrix entry
+      }, 3800); // Wait for loading bar to complete
     }
   }
 

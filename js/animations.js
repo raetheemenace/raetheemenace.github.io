@@ -257,6 +257,12 @@ class AnimationController {
    * @param {HTMLElement} aboutContent - The about-content container element
    */
   triggerAboutAnimations(aboutContent) {
+    // Find and animate the intro with typewriter effect
+    const intro = aboutContent.querySelector('.about-intro.typewriter-scroll');
+    if (intro && !intro.dataset.animated) {
+      this.triggerScrollTypewriter(intro);
+    }
+    
     // Find and animate description and aspirations paragraphs with staggered delay
     const description = aboutContent.querySelector('.about-description');
     const aspirations = aboutContent.querySelector('.about-aspirations');
@@ -264,13 +270,13 @@ class AnimationController {
     if (description) {
       setTimeout(() => {
         description.classList.add('visible');
-      }, 500);
+      }, 2500); // Delay to let typewriter finish
     }
     
     if (aspirations) {
       setTimeout(() => {
         aspirations.classList.add('visible');
-      }, 1000);
+      }, 3000);
     }
   }
   

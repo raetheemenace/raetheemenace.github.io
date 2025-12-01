@@ -35,11 +35,17 @@
     </div>
   </div>
 
+  <!-- Matrix Entry Transition -->
+  <div id="matrix-entry" class="matrix-entry">
+    <canvas id="matrix-entry-canvas"></canvas>
+    <div class="matrix-entry-text">ENTERING THE MATRIX</div>
+  </div>
+
   <!-- Digital Rain Canvas Background -->
   <canvas id="digital-rain"></canvas>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar" id="navbar">
+  <!-- Navigation Bar (outside main-site wrapper to stay fixed) -->
+  <nav class="navbar main-site-hidden" id="navbar">
     <div class="nav-container">
       <a href="#hero" class="nav-logo">
         <img src="assets/logo.svg" alt="B4Y0N3TTA Logo">
@@ -73,6 +79,9 @@
       </div>
     </div>
   </nav>
+
+  <!-- Main Site Content (hidden until entry animation completes) -->
+  <div id="main-site" class="main-site-hidden"></div>
 
   <!-- Main Content -->
   <main>
@@ -365,6 +374,8 @@
   <footer class="footer">
     <p>&copy; 2025 B4Y0N3TTA. All rights reserved.</p>
   </footer>
+
+  </div><!-- End of main-site -->
 
   <!-- JavaScript Files -->
   <script src="js/digital-rain.js"></script>
