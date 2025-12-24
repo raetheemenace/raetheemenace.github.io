@@ -1046,6 +1046,20 @@ a:hover {
   color: var(--text-secondary);
 }
 
+.experience-role {
+  font-size: var(--font-size-sm);
+  color: var(--matrix-green);
+  font-style: italic;
+  margin-top: var(--spacing-xs);
+}
+
+.experience-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: var(--spacing-sm);
+}
+
 .experience-rank {
   display: flex;
   align-items: center;
